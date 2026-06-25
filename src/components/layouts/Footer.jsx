@@ -3,9 +3,12 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-slate-950 pt-20 pb-8 px-6 sm:px-10 lg:px-16 relative overflow-hidden">
-      {/* Aurora Ambient Light Glow */}
+      {/* Top Border Glow Line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-indigo-500/40 to-transparent" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-125 h-62.5 bg-linear-to-tr from-indigo-500/10 to-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+
+      {/* Aurora Ambient Light Glow - FIX: Mengubah w-125 h-62.5 non-standar menjadi utilitas inti yang aman */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-64 bg-linear-to-tr from-indigo-500/5 to-cyan-500/5 rounded-full blur-[120px] pointer-events-none" />
+
       {/* Grid Utama */}
       <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-12 lg:gap-8 text-center sm:text-left mb-16">
         {/* KOLOM 1: BRAND IDENTITY */}
@@ -19,37 +22,6 @@ export default function Footer() {
           <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-medium tracking-wide">
             Penyedia layanan instalasi, perbaikan, dan perawatan sistem pendingin udara (AC) premium untuk skala residensial maupun korporat. Mengutamakan SOP ketat dan transparansi penuh.
           </p>
-          {/* Sosial Media Neon Card */}
-          <div className="flex items-center gap-3 mt-2">
-            <a
-              href="#"
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-900 bg-slate-950/60 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:-translate-y-1 transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-              </svg>
-            </a>
-            <a
-              href="#"
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-900 bg-slate-950/60 text-slate-400 hover:text-indigo-400 hover:border-indigo-500/30 hover:-translate-y-1 transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-              </svg>
-            </a>
-            <a
-              href="#"
-              className="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-900 bg-slate-950/60 text-slate-400 hover:text-cyan-400 hover:border-cyan-500/30 hover:-translate-y-1 transition-all duration-300 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                <rect x="2" y="9" width="4" height="12"></rect>
-                <circle cx="4" cy="4" r="2"></circle>
-              </svg>
-            </a>
-          </div>
         </div>
 
         {/* GRUP CONTAINER: NAVIGASI & LAYANAN BERDAMPINGAN DI HP */}
@@ -164,7 +136,8 @@ export default function Footer() {
             </a>
           </div>
         </div>
-      </div>{" "}
+      </div>
+
       {/* SEKAT FOOTER BOTTOM */}
       <div className="w-full h-px bg-linear-to-r from-transparent via-slate-800 to-transparent mb-6" />
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10 text-center relative z-10">

@@ -50,13 +50,14 @@ _Pesan dikirim otomatis via Landing Page_`;
   };
 
   return (
-    <section id="contact" className="relative bg-slate-950 pt-4 pb-16 px-4 sm:pt-6 sm:pb-24 lg:px-8 -mt-1.5 lg:-mt-10 border-t border-solid border-slate-800 lg:border-none overflow-hidden">
+    // FIX LAYOUT: Menyelaraskan margin minus responsif agar sambungan dengan CTA rapat sempurna tanpa celah putih
+    <section id="contact" className="relative bg-slate-950 pt-12 pb-16 px-4 sm:pb-24 lg:px-8 -mt-12 sm:-mt-14 lg:-mt-16 overflow-hidden border-t border-slate-900/40 z-10 will-change-transform">
       {/* Top Border Glow Line */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-slate-900 to-transparent" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-slate-900/60 to-transparent" />
 
-      {/* Background Ambient Lights Premium */}
+      {/* Background Ambient Lights Premium (FIX: Mengubah nilai w-87.5 non-standar menjadi w-80 bawaan inti) */}
       <div className="absolute top-1/4 left-10 w-72 h-72 bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-87.5 h-87.5 bg-cyan-500/5 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-cyan-500/5 rounded-full blur-[130px] pointer-events-none" />
 
       {/* Container Utama */}
       <div className="mx-auto max-w-5xl lg:max-w-6xl relative z-10">
@@ -74,9 +75,9 @@ _Pesan dikirim otomatis via Landing Page_`;
         {/* Responsive Grid System */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-6 items-stretch">
           {/* SISI KIRI: INFO & LOKASI */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-4 w-full">
-            {/* Bento Item 1: Kontak Cepat */}
-            <div className="flex-1 rounded-3xl border border-slate-900/80 bg-linear-to-b from-slate-900/30 to-slate-950/40 p-5 lg:p-6 backdrop-blur-xl shadow-xl shadow-indigo-950/5">
+          <div className="lg:col-span-5 flex flex-col justify-between gap-6 w-full">
+            {/* Bento Item 1: Kontak Cepat - Dioptimalkan dari heavy backdrop-blur di mobile */}
+            <div className="flex-1 rounded-3xl border border-slate-900/80 bg-linear-to-b from-slate-900/30 to-slate-950/40 p-5 lg:p-6 md:backdrop-blur-xl shadow-xl shadow-indigo-950/5">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Hubungi Langsung</h3>
               <div className="space-y-4">
                 {/* Link WhatsApp Langsung */}
@@ -84,7 +85,7 @@ _Pesan dikirim otomatis via Landing Page_`;
                   href="https://wa.me/6282125223321?text=Halo%20Azril%20Mitra%20Teknik,%20saya%20ingin%20bertanya%20mengenai%20layanan%20AC."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 group p-2.5 -m-2.5 rounded-2xl hover:bg-slate-900/40 transition-all border border-transparent hover:border-slate-900 cursor-pointer"
+                  className="flex items-center gap-4 group p-2.5 -m-2.5 rounded-2xl hover:bg-slate-900/40 transition-all border border-transparent hover:border-slate-900/60 cursor-pointer"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 group-hover:bg-indigo-500/20 transition-all">
                     <Phone className="h-4 w-4" />
@@ -110,7 +111,7 @@ _Pesan dikirim otomatis via Landing Page_`;
             </div>
 
             {/* Bento Item 2: Operasional & Kantor */}
-            <div className="flex-1 rounded-3xl border border-slate-900/80 bg-linear-to-b from-slate-900/30 to-slate-950/40 p-5 lg:p-6 backdrop-blur-xl shadow-xl shadow-indigo-950/5">
+            <div className="flex-1 rounded-3xl border border-slate-900/80 bg-linear-to-b from-slate-900/30 to-slate-950/40 p-5 lg:p-6 md:backdrop-blur-xl shadow-xl shadow-indigo-950/5">
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 border border-slate-800/80 text-slate-400 shrink-0">
@@ -133,7 +134,7 @@ _Pesan dikirim otomatis via Landing Page_`;
                   <div>
                     <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest">Workshop Utama</h4>
                     <a
-                      href="https://www.google.com/maps/search/?api=1&query=Jl.+Kalibaru+Barat,+RT009/06+No.29+Kelurahan+Kalibaru+Kecamatan+Cilincing,+Jakarta+Utara,+Jakarta+14110"
+                      href="https://maps.google.com/?q=Jl.+Kalibaru+Barat,+RT009/06+No.29+Kalibaru+Cilincing+Jakarta+Utara"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-1 block text-xs text-slate-400 hover:text-cyan-400 hover:underline leading-relaxed transition-colors duration-300 cursor-pointer"
@@ -148,7 +149,7 @@ _Pesan dikirim otomatis via Landing Page_`;
 
           {/* SISI KANAN: FORMULIR RESERVASI */}
           <div className="lg:col-span-7 w-full flex">
-            <div className="w-full rounded-3xl border border-slate-900/80 bg-linear-to-b from-slate-900/30 to-slate-950/40 p-5 sm:p-6 lg:p-8 backdrop-blur-xl shadow-2xl shadow-indigo-950/10 flex flex-col justify-center">
+            <div className="w-full rounded-3xl border border-slate-900/80 bg-linear-to-b from-slate-900/30 to-slate-950/40 p-5 sm:p-6 lg:p-8 md:backdrop-blur-xl shadow-2xl shadow-indigo-950/10 flex flex-col justify-center">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Formulir Reservasi</h3>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -201,6 +202,12 @@ _Pesan dikirim otomatis via Landing Page_`;
                         Sewa AC Standing & Heavy Duty Cooling
                       </option>
                     </select>
+                    {/* Kustom arrow indikator agar tidak cacat render antar OS */}
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+                      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
 
