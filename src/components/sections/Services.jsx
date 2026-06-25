@@ -52,7 +52,7 @@ const SERVICES_DATA = [
     title: "Service Freezer & Kulkas",
     price: "Cek Estimasi",
     desc: "Perbaikan khusus untuk Freezer Box, Showcase, hingga Kulkas rumah tangga yang tidak dingin, mati total, atau buntu sistem.",
-    features: ["Ganti Kompresor Baru", "Flashing & Isi Freon Baru", "Perbaikan Thermostat", "Perbaikan Kebocoran Evap"],
+    features: ["Ganti Kompresor Baru", "Flushing & Isi Freon Baru", "Perbaikan Thermostat", "Perbaikan Kebocoran Evap"],
     accentClass: "md:hover:border-amber-500/30 md:hover:shadow-amber-500/5",
     iconClass: "text-amber-400 bg-amber-500/10 border-amber-500/20",
     badge: "Layanan Baru",
@@ -76,13 +76,14 @@ function ServiceCard({ service }) {
   const whatsappUrl = `https://wa.me/6282125223321?text=Halo%20Azril%20Mitra%20Teknik%2C%20saya%20ingin%20memesan%20layanan%20*${encodeURIComponent(service.title)}*.`;
 
   return (
+    // REVISI: Dipastikan overflow-y-visible agar content dropdown/popover tidak terpotong ke bawah
     <div
-      className={`group relative flex flex-col justify-between rounded-2xl border border-slate-900/60 bg-slate-900/50 p-5 shadow-xl select-none transition-transform duration-300 md:backdrop-blur-md md:p-6 md:hover:-translate-y-1.5 ${service.accentClass}`}
+      className={`group relative flex flex-col justify-between rounded-2xl border border-slate-900/60 bg-slate-900/50 p-5 shadow-xl select-none transition-transform duration-300 overflow-y-visible md:backdrop-blur-md md:p-6 md:hover:-translate-y-1.5 ${service.accentClass}`}
     >
       {/* Subtle Inner Glow - Dinonaktifkan di mobile untuk menghemat daya render baterai */}
       <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-white/0 to-white/5 opacity-0 transition-opacity duration-300 md:group-hover:opacity-100 pointer-events-none" />
 
-      <div>
+      <div className="overflow-y-visible">
         {/* Header Unit (Icon & Badge) */}
         <div className="flex items-center justify-between mb-4">
           <div className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-transform duration-300 md:group-hover:scale-105 ${service.iconClass}`}>
@@ -127,15 +128,20 @@ function ServiceCard({ service }) {
   );
 }
 
-// 3. MAIN COMPONENT (ID disesuaikan menjadi "services" agar terintegrasi sempurna dengan Scroll Handler Navbar)
+// 3. MAIN COMPONENT
 function Services() {
   return (
-    <section id="services" className="relative bg-slate-950 pt-12 pb-10 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-slate-900/60 will-change-transform">
-      {/* Premium Ambient Background Blurs (Dioptimalkan radiusnya agar performa scrolling sangat ringan) */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 sm:w-125 sm:h-125 bg-blue-500/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-48 h-48 sm:w-75 sm:h-75 bg-cyan-500/5 rounded-full blur-[60px] md:blur-[100px] pointer-events-none" />
+    // REVISI OVERFLOW: Diubah menjadi overflow-x-hidden & overflow-y-visible agar detail konten bebas memanjang tanpa terpotong
+    <section id="services" className="relative bg-slate-950 pt-12 pb-10 px-4 sm:px-6 lg:px-8 overflow-x-hidden overflow-y-visible border-b border-slate-900/60 transition-all z-10">
+      {/* 
+        REVISI AMBIENT GLOW: 
+        Menambahkan transform-gpu, will-change-filter, serta membatasi radius blur maksimal 64px-80px di mobile 
+        agar GPU hardware di HP memproses secara mulus tanpa menghasilkan bug garis artefak bintik-bintik.
+      */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 sm:w-125 sm:h-125 bg-blue-500/5 rounded-full blur-3xl transform-gpu will-change-filter pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-48 h-48 sm:w-75 sm:h-75 bg-cyan-500/5 rounded-full blur-2xl transform-gpu will-change-filter pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl relative z-10">
+      <div className="mx-auto max-w-7xl relative z-10 overflow-y-visible">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-10 gap-2.5 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-1.5 rounded-full bg-cyan-500/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-cyan-400 border border-cyan-500/20 shadow-[0_0_15px_rgba(34,211,238,0.05)]">
@@ -147,8 +153,8 @@ function Services() {
           </p>
         </div>
 
-        {/* Responsive Services Grid (Hardware accelerated & smooth viewport) */}
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 will-change-transform">
+        {/* Responsive Services Grid - REVISI: Menggunakan kombinasi hardware acceleration & overflow-y-visible */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 transform-gpu overflow-y-visible">
           {SERVICES_DATA.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}

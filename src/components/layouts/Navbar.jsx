@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import logo from "../../assets/images/fixlogo.png";
 
-// Array menu dideklarasikan di luar komponen agar hemat alokasi memori
+// Array menu
 const MENUS = [
   { name: "Beranda", id: "home" },
   { name: "Layanan", id: "services" },
@@ -14,14 +14,13 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
-  // 1. OPTIMALISASI HIGH-PERFORMANCE SCROLL (Mencegah Layar Putih di HP)
+  // 1. OPTIMALISASI HIGH-PERFORMANCE
   useEffect(() => {
     let ticking = false;
 
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          // Kompensasi posisi scroll agar pergantian status menu aktif terasa pas
           const scrollPosition = window.scrollY + 140;
 
           for (const menu of MENUS) {
@@ -45,22 +44,15 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // 2. AKURASI SCROLL PRESISI DI LAPTOP & HP
   const handleNavClick = useCallback((e, id) => {
     e.preventDefault();
-
-    // Tutup menu mobile terlebih dahulu agar ukuran tinggi halaman kembali normal
     setIsOpen(false);
-
-    // Beri jeda 150ms menunggu menu mobile menutup total, baru hitung posisi scroll
     setTimeout(() => {
       const element = document.getElementById(id);
       if (element) {
-        // Ambil tinggi navbar secara dinamis
         const header = document.querySelector("header");
         const navbarHeight = header ? header.offsetHeight : 80;
 
-        // Berikan jarak napas ekstra di HP agar judul section tidak terpotong navbar
         const isMobile = window.innerWidth < 768;
         const extraOffset = isMobile ? 16 : 0;
 
@@ -87,7 +79,7 @@ function Navbar() {
           ❄️
         </a>
 
-        {/* LOGO (Presisi Tengah di Mobile, Kiri di Desktop) */}
+        {/* LOGO  */}
         <a href="#home" onClick={(e) => handleNavClick(e, "home")} className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 cursor-pointer transition-transform active:scale-95">
           <img src={logo} alt="Azril Mitra Teknik" className="h-14 sm:h-16 w-auto object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.2)]" />
         </a>
@@ -125,7 +117,7 @@ function Navbar() {
         </button>
       </div>
 
-      {/* MOBILE MENU PANEL (Sudah Menggunakan Klasifikasi Spacing Murni Tailwind v4: max-h-105) */}
+      {/* MOBILE MENU PANEL */}
       <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-105 opacity-100" : "max-h-0 opacity-0"} bg-slate-950/95 backdrop-blur-xl border-t border-slate-800/50 will-change-transform`}>
         <nav className="flex flex-col items-center text-center px-4 py-4 gap-1">
           {MENUS.map((menu) => (

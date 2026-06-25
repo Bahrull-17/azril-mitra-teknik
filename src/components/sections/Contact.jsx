@@ -25,7 +25,6 @@ export default function Contact() {
 
     const adminPhoneNumber = "6282125223321";
 
-    // Template pesan reservasi terstruktur
     const message = `*APLIKASI RESERVASI - AZRIL MITRA TEKNIK*
 --------------------------------------------
 *Nama Lengkap:* ${formData.name}
@@ -49,13 +48,24 @@ _Pesan dikirim otomatis via Landing Page_`;
     });
   };
 
+  // REVISI TOTAL: Mengunci warna bg-slate-950 secara solid agar tidak nge-glitch jadi putih saat diisi teks
+  const inputStyle = `
+    w-full rounded-xl border border-slate-900 bg-slate-950 px-4 py-2.5 text-xs text-slate-200 placeholder-slate-700 font-medium shadow-inner transition-all
+    focus:border-indigo-500/50 focus:bg-slate-950 focus:outline-hidden
+    
+    [&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]
+    [&:-webkit-autofill]:[box-shadow:0_0_0_1000px_#020617_inset]
+    [&:-webkit-autofill]:[-webkit-text-fill-color:#cbd5e1]
+    
+    [appearance:none] [-webkit-appearance:none]
+  `.trim();
+
   return (
-    // FIX LAYOUT: Menyelaraskan margin minus responsif agar sambungan dengan CTA rapat sempurna tanpa celah putih
     <section id="contact" className="relative bg-slate-950 pt-12 pb-16 px-4 sm:pb-24 lg:px-8 -mt-12 sm:-mt-14 lg:-mt-16 overflow-hidden border-t border-slate-900/40 z-10 will-change-transform">
       {/* Top Border Glow Line */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-px bg-linear-to-r from-transparent via-slate-900/60 to-transparent" />
 
-      {/* Background Ambient Lights Premium (FIX: Mengubah nilai w-87.5 non-standar menjadi w-80 bawaan inti) */}
+      {/* Background Ambient Lights Premium */}
       <div className="absolute top-1/4 left-10 w-72 h-72 bg-indigo-600/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-cyan-500/5 rounded-full blur-[130px] pointer-events-none" />
 
@@ -76,11 +86,10 @@ _Pesan dikirim otomatis via Landing Page_`;
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-6 items-stretch">
           {/* SISI KIRI: INFO & LOKASI */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-6 w-full">
-            {/* Bento Item 1: Kontak Cepat - Dioptimalkan dari heavy backdrop-blur di mobile */}
+            {/* Bento Item 1: Kontak Cepat */}
             <div className="flex-1 rounded-3xl border border-slate-900/80 bg-linear-to-b from-slate-900/30 to-slate-950/40 p-5 lg:p-6 md:backdrop-blur-xl shadow-xl shadow-indigo-950/5">
               <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Hubungi Langsung</h3>
               <div className="space-y-4">
-                {/* Link WhatsApp Langsung */}
                 <a
                   href="https://wa.me/6282125223321?text=Halo%20Azril%20Mitra%20Teknik,%20saya%20ingin%20bertanya%20mengenai%20layanan%20AC."
                   target="_blank"
@@ -97,7 +106,6 @@ _Pesan dikirim otomatis via Landing Page_`;
                   <ArrowUpRight className="h-4 w-4 text-slate-600 ml-auto opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </a>
 
-                {/* Email Resmi */}
                 <div className="flex items-center gap-4 p-2.5 -m-2.5">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
                     <Mail className="h-4 w-4" />
@@ -134,7 +142,7 @@ _Pesan dikirim otomatis via Landing Page_`;
                   <div>
                     <h4 className="text-xs font-bold text-slate-200 uppercase tracking-widest">Workshop Utama</h4>
                     <a
-                      href="https://maps.google.com/?q=Jl.+Kalibaru+Barat,+RT009/06+No.29+Kalibaru+Cilincing+Jakarta+Utara"
+                      href="http://maps.google.com/?q=Jl.+Kalibaru+Barat,+RT009/06+No.29+Kalibaru+Cilincing"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-1 block text-xs text-slate-400 hover:text-cyan-400 hover:underline leading-relaxed transition-colors duration-300 cursor-pointer"
@@ -156,53 +164,31 @@ _Pesan dikirim otomatis via Landing Page_`;
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
                     <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">Nama Lengkap</label>
-                    <input
-                      type="text"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Ahmad Solehudin"
-                      className="w-full rounded-xl border border-slate-900 bg-slate-950/60 px-4 py-2.5 text-xs text-white placeholder-slate-700 focus:border-indigo-500/50 focus:bg-slate-950 focus:outline-hidden transition-all shadow-inner"
-                      required
-                    />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Ahmad Solehudin" className={inputStyle} required />
                   </div>
                   <div>
                     <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">Nomor WhatsApp</label>
-                    <input
-                      type="tel"
-                      name="whatsapp"
-                      value={formData.whatsapp}
-                      onChange={handleChange}
-                      placeholder="0812345678xx"
-                      className="w-full rounded-xl border border-slate-900 bg-slate-950/60 px-4 py-2.5 text-xs text-white placeholder-slate-700 focus:border-indigo-500/50 focus:bg-slate-950 focus:outline-hidden transition-all shadow-inner"
-                      required
-                    />
+                    <input type="tel" name="whatsapp" value={formData.whatsapp} onChange={handleChange} placeholder="0812345678xx" className={inputStyle} required />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-1.5">Jenis Layanan Premium</label>
                   <div className="relative">
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full rounded-xl border border-slate-900 bg-slate-950/60 px-4 py-2.5 text-xs text-slate-300 focus:border-indigo-500/50 focus:bg-slate-950 focus:outline-hidden transition-all shadow-inner cursor-pointer appearance-none"
-                    >
-                      <option value="Cuci AC & Perawatan Berkala" className="bg-slate-950">
+                    <select name="service" value={formData.service} onChange={handleChange} className={`${inputStyle} appearance-none cursor-pointer text-left`}>
+                      <option value="Cuci AC & Perawatan Berkala" className="bg-slate-950 text-slate-300">
                         Cuci AC & Perawatan Berkala
                       </option>
-                      <option value="Perbaikan Akut & Troubleshooting Freon" className="bg-slate-950">
+                      <option value="Perbaikan Akut & Troubleshooting Freon" className="bg-slate-950 text-slate-300">
                         Perbaikan Akut & Troubleshooting Freon
                       </option>
-                      <option value="Instalasi / Bongkar Pasang Sistem AC" className="bg-slate-950">
+                      <option value="Instalasi / Bongkar Pasang Sistem AC" className="bg-slate-950 text-slate-300">
                         Instalasi / Bongkar Pasang Sistem AC
                       </option>
-                      <option value="Sewa AC Standing & Heavy Duty Cooling" className="bg-slate-950">
+                      <option value="Sewa AC Standing & Heavy Duty Cooling" className="bg-slate-950 text-slate-300">
                         Sewa AC Standing & Heavy Duty Cooling
                       </option>
                     </select>
-                    {/* Kustom arrow indikator agar tidak cacat render antar OS */}
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
                       <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
@@ -219,7 +205,7 @@ _Pesan dikirim otomatis via Landing Page_`;
                     value={formData.description}
                     onChange={handleChange}
                     placeholder="Tuliskan kendala AC Anda atau detail unit yang ingin dipesan secara ringkas..."
-                    className="w-full rounded-xl border border-slate-900 bg-slate-950/60 px-4 py-2.5 text-xs text-white placeholder-slate-700 focus:border-indigo-500/50 focus:bg-slate-950 focus:outline-hidden transition-all shadow-inner resize-none leading-relaxed"
+                    className={`${inputStyle} resize-none leading-relaxed`}
                     required
                   ></textarea>
                 </div>

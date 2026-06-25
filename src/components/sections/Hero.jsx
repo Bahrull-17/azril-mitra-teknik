@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ShieldCheck, Calendar, ArrowRight, Wrench, Sparkles, CheckCircle2 } from "lucide-react";
 
-// Data konstan dipisahkan di luar komponen agar hemat alokasi memori
+// Data konstan
 const SERVICE_OPTIONS = [
   { id: "cuci", label: "Cuci AC", price: "Rp 75rb~", time: "30-45 Menit" },
   { id: "perbaikan", label: "Perbaikan", price: "Pengecekan dulu", time: "Sesuai Kerusakan" },
@@ -19,9 +19,8 @@ export default function Hero() {
   const activeService = SERVICE_OPTIONS.find((s) => s.id === selectedService);
 
   return (
-    // Tambahkan id="home" agar integrasi klik beranda dari navbar meluncur tepat ke sini
     <section id="home" className="relative overflow-hidden bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 pt-10 pb-8 lg:pt-16 lg:pb-12 will-change-transform">
-      {/* Premium Ambient Light / Blur Effect (Optimasi radius blur agar ringan di HP) */}
+      {/* Premium Ambient Light */}
       <div className="absolute -bottom-20 -left-20 h-96 w-96 rounded-full bg-cyan-500/5 blur-[80px] md:blur-[120px] pointer-events-none" />
       <div className="absolute -top-20 -right-20 h-96 w-96 rounded-full bg-blue-600/5 blur-[80px] md:blur-[120px] pointer-events-none" />
 
@@ -62,7 +61,7 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Section Statistik (Optimasi grid responsif dan performa animasi hover) */}
+            {/* Section Statistik */}
             <div className="mt-10 grid grid-cols-1 gap-4 border-t border-slate-900 pt-6 sm:grid-cols-3 lg:gap-5">
               {STATS.map((stat, index) => (
                 <div
@@ -153,7 +152,7 @@ export default function Hero() {
               </a>
             </div>
 
-            {/* Floating Glassmorphism Card (Dioptimalkan peletakannya agar presisi dan ringan di HP) */}
+            {/* Floating Glassmorphism Card */}
             <div className="relative mt-4 mx-auto flex w-full items-center gap-4 rounded-2xl border border-white/5 bg-slate-950/80 p-4 shadow-xl backdrop-blur-sm transition-all duration-300 lg:absolute lg:mt-0 lg:-bottom-24 lg:left-1/2 lg:w-[calc(100%-3rem)] lg:-translate-x-1/2 z-10 will-change-transform">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400">
                 <Calendar className="h-4 w-4" />
