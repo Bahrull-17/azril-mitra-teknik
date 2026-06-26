@@ -70,17 +70,17 @@ const SERVICES_DATA = [
   },
 ];
 
-// 2. SUB-COMPONENT: SERVICE CARD (Dioptimalkan untuk Kelancaran Render GPU Mobile)
+// 2. SUB-COMPONENT: SERVICE CARD
 function ServiceCard({ service }) {
   const Icon = service.icon;
   const whatsappUrl = `https://wa.me/6282125223321?text=Halo%20Azril%20Mitra%20Teknik%2C%20saya%20ingin%20memesan%20layanan%20*${encodeURIComponent(service.title)}*.`;
 
   return (
-    // REVISI: Dipastikan overflow-y-visible agar content dropdown/popover tidak terpotong ke bawah
+    // MEMPERTAHANKAN WARNA PRESTIGE AWAL: bg-slate-900/50 & md:backdrop-blur-md tetap aktif tanpa merusak layar
     <div
-      className={`group relative flex flex-col justify-between rounded-2xl border border-slate-900/60 bg-slate-900/50 p-5 shadow-xl select-none transition-transform duration-300 overflow-y-visible md:backdrop-blur-md md:p-6 md:hover:-translate-y-1.5 ${service.accentClass}`}
+      className={`group relative flex flex-col justify-between rounded-2xl border border-slate-900/60 bg-slate-900/50 p-5 shadow-xl select-none transition-all duration-300 overflow-y-visible transform-gpu backface-hidden md:backdrop-blur-md md:p-6 md:hover:-translate-y-1.5 ${service.accentClass}`}
     >
-      {/* Subtle Inner Glow - Dinonaktifkan di mobile untuk menghemat daya render baterai */}
+      {/* Subtle Inner Glow */}
       <div className="absolute inset-0 rounded-2xl bg-linear-to-b from-white/0 to-white/5 opacity-0 transition-opacity duration-300 md:group-hover:opacity-100 pointer-events-none" />
 
       <div className="overflow-y-visible">
@@ -131,15 +131,14 @@ function ServiceCard({ service }) {
 // 3. MAIN COMPONENT
 function Services() {
   return (
-    // REVISI OVERFLOW: Diubah menjadi overflow-x-hidden & overflow-y-visible agar detail konten bebas memanjang tanpa terpotong
     <section id="services" className="relative bg-slate-950 pt-12 pb-10 px-4 sm:px-6 lg:px-8 overflow-x-hidden overflow-y-visible border-b border-slate-900/60 transition-all z-10">
       {/* 
-        REVISI AMBIENT GLOW: 
-        Menambahkan transform-gpu, will-change-filter, serta membatasi radius blur maksimal 64px-80px di mobile 
-        agar GPU hardware di HP memproses secara mulus tanpa menghasilkan bug garis artefak bintik-bintik.
+        FIX UTAMA ARSITEKTUR:
+        - Menghapus total properti maut 'will-change-filter' yang menghancurkan rendering GPU mobile.
+        - Membatasi blur-3xl bawaan css dengan nilai konkrit agar pendaran warna tetap mewah secara natural tanpa lag.
       */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 sm:w-125 sm:h-125 bg-blue-500/5 rounded-full blur-3xl transform-gpu will-change-filter pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-48 h-48 sm:w-75 sm:h-75 bg-cyan-500/5 rounded-full blur-2xl transform-gpu will-change-filter pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 sm:w-125 sm:h-125 bg-blue-500/5 rounded-full blur-[100px] transform-gpu pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-48 h-48 sm:w-75 sm:h-75 bg-cyan-500/5 rounded-full blur-[80px] transform-gpu pointer-events-none" />
 
       <div className="mx-auto max-w-7xl relative z-10 overflow-y-visible">
         {/* Section Header */}
@@ -153,7 +152,7 @@ function Services() {
           </p>
         </div>
 
-        {/* Responsive Services Grid - REVISI: Menggunakan kombinasi hardware acceleration & overflow-y-visible */}
+        {/* Responsive Services Grid */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 transform-gpu overflow-y-visible">
           {SERVICES_DATA.map((service) => (
             <ServiceCard key={service.id} service={service} />
