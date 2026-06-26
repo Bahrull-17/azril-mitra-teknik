@@ -1,6 +1,6 @@
 import { Wind, Wrench, RefreshCw, Gauge, ShieldCheck, ArrowRight, Box, WashingMachine } from "lucide-react";
 
-// 1. DATA CONFIGURATION (Hoisted di luar komponen, bersih & menghemat alokasi memori RAM)
+// 1. DATA CONFIGURATION
 const SERVICES_DATA = [
   {
     id: "cuci",
@@ -134,8 +134,7 @@ function Services() {
     <section id="services" className="relative bg-slate-950 pt-12 pb-10 px-4 sm:px-6 lg:px-8 overflow-x-hidden overflow-y-visible border-b border-slate-900/60 transition-all z-10">
       {/* 
         FIX UTAMA ARSITEKTUR:
-        - Menghapus total properti maut 'will-change-filter' yang menghancurkan rendering GPU mobile.
-        - Membatasi blur-3xl bawaan css dengan nilai konkrit agar pendaran warna tetap mewah secara natural tanpa lag.
+        
       */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-72 h-72 sm:w-125 sm:h-125 bg-blue-500/5 rounded-full blur-[100px] transform-gpu pointer-events-none" />
       <div className="absolute bottom-1/4 right-10 w-48 h-48 sm:w-75 sm:h-75 bg-cyan-500/5 rounded-full blur-[80px] transform-gpu pointer-events-none" />

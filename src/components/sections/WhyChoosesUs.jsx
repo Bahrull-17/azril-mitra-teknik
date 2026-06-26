@@ -1,6 +1,6 @@
 import { ShieldCheck, Users, Wrench, Coins } from "lucide-react";
 
-// 1. DATA CONFIGURATION (Hoisted di luar komponen agar tidak di-recreate setiap render)
+// 1. DATA CONFIGURATION
 const FEATURES_DATA = [
   {
     id: 1,
@@ -39,9 +39,8 @@ const FEATURES_DATA = [
 // 2. MAIN COMPONENT
 export default function WhyChooseUs() {
   return (
-    // FIX: Membersihkan double className, mengoptimalkan rendering dengan will-change-transform
     <section id="keunggulan" className="relative bg-slate-950 pt-12 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden border-b border-slate-900/40 will-change-transform">
-      {/* Glow Ambient Background (Diturunkan intensitas blur agar hemat performa GPU mobile) */}
+      {/* Glow Ambient Background  */}
       <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-indigo-500/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl relative z-10">
@@ -52,7 +51,7 @@ export default function WhyChooseUs() {
           <p className="mt-3 text-xs sm:text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">Kami mengutamakan integritas kerja dan kepuasan jangka panjang Anda lewat standar penanganan teknis yang profesional.</p>
         </div>
 
-        {/* Features Responsive Grid - Menggunakan items-stretch agar tinggi flexbox merata */}
+        {/* Features Responsive Grid  */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 lg:gap-6 items-stretch content-visibility-auto">
           {FEATURES_DATA.map((item) => {
             const Icon = item.icon;
@@ -66,7 +65,7 @@ export default function WhyChooseUs() {
                 {/* Text Content */}
                 <div className="flex flex-col grow">
                   <h3 className="text-sm font-bold text-white mb-2 tracking-tight md:group-hover:text-indigo-400 transition-colors duration-200">{item.title}</h3>
-                  {/* FIX: Menggunakan class grow standar Tailwind v4 untuk alokasi ruang kosong */}
+                  {/* FIX: Menggunakan class grow  */}
                   <p className="text-xs text-slate-400 leading-relaxed grow">{item.desc}</p>
                 </div>
               </div>

@@ -107,15 +107,20 @@ export default function Portfolio() {
     return activeCategory === "all" ? PORTFOLIO_DATA : PORTFOLIO_DATA.filter((p) => p.category === activeCategory);
   }, [activeCategory]);
 
+  // REVISI: Efek Pendeteksi Scroll & Ganti Halaman Navbar
   useEffect(() => {
     if (selectedProject) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
+      // Fungsi penutup otomatis ketika layar mendeteksi pergeseran/scroll
+      const handleScrollClose = () => {
+        setSelectedProject(null);
+      };
+
+      window.addEventListener("scroll", handleScrollClose, { passive: true });
+
+      return () => {
+        window.removeEventListener("scroll", handleScrollClose);
+      };
     }
-    return () => {
-      document.body.style.overflow = "unset";
-    };
   }, [selectedProject]);
 
   return (
@@ -188,9 +193,8 @@ export default function Portfolio() {
 
       {/* MODAL OVERLAY DETAIL */}
       {selectedProject && (
-        /* REVISI: Menggunakan `items-start`, `pt-24` (agar lolos dari halangan navbar), dan `overflow-y-auto` pada overlay pembungkus */
         <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 p-4 pt-24 overflow-y-auto backdrop-blur-sm">
-          {/* Box Modal max-w-sm Ramping */}
+          {/* Box Modal  */}
           <div className="relative w-full max-w-sm rounded-2xl border border-slate-800 bg-slate-900 p-5 shadow-2xl my-auto">
             {/* Header Kontrol Modal */}
             <div className="flex items-center justify-between mb-3 pb-2 border-b border-slate-800/60">

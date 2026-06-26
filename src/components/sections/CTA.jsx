@@ -28,13 +28,12 @@ export default function CTA() {
   ];
 
   return (
-    // FIX FINAL: Menaikkan posisi lebih tinggi di HP (-mt-12) dan menyelaraskan desktop (-mt-16) agar super rapat & pas
     <section id="cta" className="relative bg-slate-950 pt-12 pb-16 px-4 sm:pb-24 lg:px-8 overflow-hidden border-t border-slate-900/40 -mt-12 sm:-mt-14 lg:-mt-16 z-10 will-change-transform">
       {/* Radial Glow Intensifier Area Brand */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-44 bg-emerald-500/5 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="mx-auto max-w-5xl lg:max-w-6xl relative z-10">
-        {/* Main Bento Container - Tanpa heavy backdrop-blur di mobile untuk mencegah ghosting scroll */}
+        {/* Main Bento Container */}
         <div className="relative rounded-3xl border border-slate-900/80 bg-slate-900/20 p-5 sm:p-12 overflow-hidden shadow-xl shadow-indigo-950/10">
           {/* Geometric Tech Grid Pattern */}
           <div className="absolute inset-0 bg-size-[4rem_4rem] bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] mask-[radial-gradient(ellipse_60%_50%_at_50%_40%,#000_70%,transparent_100%)] opacity-15 pointer-events-none" />
@@ -66,7 +65,7 @@ export default function CTA() {
                 >
                   <div className="absolute inset-0 bg-radial from-emerald-500/5 via-transparent to-transparent opacity-0 md:group-hover:opacity-100 transition-opacity duration-200 pointer-events-none" />
 
-                  {/* Container Logo dengan Warna Asli */}
+                  {/* Container Logo */}
                   <div className="h-12 sm:h-14 w-full max-w-36 bg-white rounded-lg sm:rounded-xl flex items-center justify-center p-2 shadow-md overflow-hidden transition-transform duration-200 md:group-hover:scale-103">
                     <img src={brand.img} alt={`${brand.name} Logo`} className="max-h-full max-w-full object-contain select-none" loading="lazy" />
                   </div>
